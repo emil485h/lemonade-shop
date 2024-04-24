@@ -11,34 +11,6 @@ import "./App.css";
 
 function App() {
   const [products] = useState([
-    {
-      id: 1,
-      name: "Lemonade",
-      price: 25,
-      lemonsUsed: 1,
-      imageUrl: "lemonade.webp",
-    },
-    {
-      id: 2,
-      name: "Mojito",
-      price: 32,
-      lemonsUsed: 2,
-      imageUrl: "Mojito.webp",
-    },
-    {
-      id: 3,
-      name: "Gin Hass",
-      price: 39,
-      lemonsUsed: 2,
-      imageUrl: "Gin-Hass.webp",
-    },
-    {
-      id: 4,
-      name: "Margarita",
-      price: 42,
-      lemonsUsed: 3,
-      imageUrl: "Margarita-drink-2.webp",
-    },
     // Flere produkter kan tilføjes her
   ]);
 
@@ -97,11 +69,7 @@ function App() {
           onCartClick={() => setIsCartVisible(true)}
           cartItemCount={cartItems.length}
         />
-        <nav>
-          <Link to="/HomePage">Home</Link>
-          <Link to="/products">Products</Link>
-          <Link to="/products2">Products2</Link>
-        </nav>
+
         <Routes>
           <Route path="/" element={<Home />} />
           <Route
