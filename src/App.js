@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react";
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import Header from "./components/Header/Header.js";
 import ProductList from "./components/ProductList/ProductList.js";
 import Cart from "./components/Cart/Cart.js";
 import Modal from "./components/Modal/Modal.js";
+import product from "./components/Products/Products.js"; // Example additional component
+import products2 from "./components/Products2/Products2.js"; // Example additional component
+import Home from "./components/HomePage/Home.js"; // Example home component
 import "./App.css";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faLemon } from "@fortawesome/free-solid-svg-icons";
 
 function App() {
   const [products] = useState([
@@ -48,90 +50,80 @@ function App() {
 
   const costPerLemon = 2;
 
-  useEffect(() => {
-    // Recalculate total price, lemons used, and profit whenever cartItems changes
-    const newTotalPrice = cartItems.reduce(
-      (total, item) => total + item.price * item.quantity,
-      0
-    );
-    const newLemonsUsed = cartItems.reduce(
-      (total, item) => total + item.lemonsUsed * item.quantity,
-      0
-    );
-    const newProfit = cartItems.reduce(
-      (total, item) =>
-        total + (item.price - costPerLemon * item.lemonsUsed) * item.quantity,
-      0
-    );
-
-    setTotalPrice(newTotalPrice);
-    setLemonsUsed(newLemonsUsed);
-    setProfit(newProfit);
-  }, [cartItems]);
-
-  const handleAddToCart = (product) => {
-    const existingItem = cartItems.find((item) => item.id === product.id);
-    if (existingItem) {
-      setCartItems(
-        cartItems.map((item) =>
-          item.id === product.id
+  const handleAddToCart = (productToAdd) => {
+    setCartItems((prevItems) => {
+      const itemExists = prevItems.find((item) => item.id === productToAdd.id);
+      if (itemExists) {
+        return prevItems.map((item) =>
+          item.id === productToAdd.id
             ? { ...item, quantity: item.quantity + 1 }
             : item
-        )
-      );
-    } else {
-      setCartItems([...cartItems, { ...product, quantity: 1 }]);
-    }
+        );
+      }
+      return [...prevItems, { ...productToAdd, quantity: 1 }];
+    });
   };
 
-  const handleUpdateCart = (product, quantity) => {
+  const handleUpdateCart = (productToUpdate, newQuantity) => {
     setCartItems((prevItems) =>
       prevItems
         .map((item) =>
-          item.id === product.id ? { ...item, quantity: quantity } : item
+          item.id === productToUpdate.id
+            ? { ...item, quantity: newQuantity }
+            : item
         )
         .filter((item) => item.quantity > 0)
     );
   };
 
   const handleRemoveFromCart = (productToRemove) => {
-    setCartItems(cartItems.filter((item) => item.id !== productToRemove.id));
+    setCartItems((prevItems) =>
+      prevItems.filter((item) => item.id !== productToRemove.id)
+    );
   };
 
-  const toggleCart = () => {
-    setIsCartVisible(!isCartVisible);
-  };
-
-  const cartItemCount = cartItems.reduce(
-    (count, item) => count + item.quantity,
-    0
-  );
+  useEffect(() => {
+    const newTotalPrice = cartItems.reduce(
+      (total, item) => total + item.price * item.quantity,
+      0
+    );
+    setTotalPrice(newTotalPrice);
+  }, [cartItems]);
 
   return (
-    <div className="App">
-      <Header onCartClick={toggleCart} cartItemCount={cartItemCount} />
-      <ProductList products={products} onAddToCart={handleAddToCart} />
-      <div>
-        <h3>Shop Summary</h3>
-        <p>Total Sales: {totalPrice.toFixed(2)} Kr.</p>
-        <p>Profit: {profit.toFixed(2)} Kr.</p>
-        Lemons Used: {lemonsUsed}
-        <FontAwesomeIcon
-          icon={faLemon}
-          style={{ color: "#fdcb6e", marginLeft: "8px", fontSize: "18px" }}
+    <Router>
+      <div className="App">
+        <Header
+          onCartClick={() => setIsCartVisible(true)}
+          cartItemCount={cartItems.length}
         />
+        <nav>
+          <Link to="/HomePage">Home</Link>
+          <Link to="/products">Products</Link>
+          <Link to="/products2">Products2</Link>
+        </nav>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route
+            path="/products"
+            element={
+              <ProductList products={products} onAddToCart={handleAddToCart} />
+            }
+          />
+          <Route path="/products2" element={<products2 />} />
+        </Routes>
+        <Modal isOpen={isCartVisible} onClose={() => setIsCartVisible(false)}>
+          <Cart
+            cartItems={cartItems}
+            onUpdateCart={handleUpdateCart}
+            onRemoveFromCart={handleRemoveFromCart}
+            totalPrice={totalPrice}
+            profit={profit}
+            lemonsUsed={lemonsUsed}
+          />
+        </Modal>
       </div>
-      <Modal isOpen={isCartVisible} onClose={toggleCart}>
-        <Cart
-          cartItems={cartItems}
-          onUpdateCart={handleUpdateCart}
-          onRemoveFromCart={handleRemoveFromCart}
-          totalPrice={totalPrice}
-          profit={profit}
-          lemonsUsed={lemonsUsed}
-        />
-      </Modal>
-    </div>
+    </Router>
   );
 }
 

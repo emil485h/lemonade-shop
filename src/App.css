@@ -41,15 +41,15 @@ button {
   justify-content: space-between;
   align-items: center;
   padding: 10px;
-  background-color: #ffeaa7;
+  background-color: rgb(138, 7, 7);
 }
 
-.logo{
+.logo {
   width: 100px;
 }
 
 .cart-item-count {
-  background-color: red;
+  background-color: rgb(138, 7, 7);
   color: white;
   border-radius: 50%;
   padding: 2px 6px;
@@ -59,10 +59,14 @@ button {
   right: -10px;
 }
 
-.Cart-icon{
-  background-color: #ffeaa7;
+.Cart-icon {
+  background-color: rgb(138, 7, 7);
   margin-right: 20px;
   padding: 0;
+}
+
+.Cart-icon:hover {
+  color: grey;
 }
 
 .App-link {
