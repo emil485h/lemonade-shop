@@ -1,16 +1,14 @@
-import React from 'react';
-import cartIcon from './cart-icon.png'; // Use your cart icon image path
-
+import React from "react";
 
 const Header = ({ onCartClick, cartItemCount }) => {
   return (
     <div className="header">
-      <img className='logo' src='Lemonade-Logo.svg' alt="Lemonade Shop Logo" />
+      <img className="logo" src="Lemonade-Logo.svg" alt="Lemonade Shop Logo" />
 
-      <button className='Cart-icon' onClick={onCartClick}>
-        {cartItemCount > 0 && <span className="cart-item-count">{cartItemCount}</span>}
-        <img src={cartIcon} alt="Cart" />
-        
+      <button className="Cart-icon" onClick={onCartClick}>
+        {cartItemCount > 0 && (
+          <span className="cart-item-count">{cartItemCount}</span>
+        )}
       </button>
     </div>
   );
