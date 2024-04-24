@@ -9,7 +9,12 @@ import products2 from "./components/Products2/Products2.js"; // Example addition
 import Home from "./components/HomePage/Home.js"; // Example home component
 import "./App.css";
 
+
+
 function App() {
+
+
+  
   const [products] = useState([
     // Flere produkter kan tilføjes her
   ]);
@@ -93,6 +98,9 @@ function App() {
       </div>
     </Router>
   );
+
+  
 }
+
 
 export default App;
