@@ -27,6 +27,8 @@ function App() {
 
   const costPerLemon = 2;
 
+
+
   const handleAddToCart = (productToAdd) => {
     setCartItems((prevItems) => {
       const itemExists = prevItems.find((item) => item.id === productToAdd.id);
@@ -83,7 +85,7 @@ function App() {
               <ProductList products={products} onAddToCart={handleAddToCart} />
             }
           />
-          <Route path="/products2" element={<Products2 />} />
+          <Route path="/products2" element={<Products2 onAddToCart={handleAddToCart}/>} />
         </Routes>
         <Modal isOpen={isCartVisible} onClose={() => setIsCartVisible(false)}>
           <Cart

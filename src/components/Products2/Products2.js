@@ -1,35 +1,35 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import './Products2.css';
 
-function Products2() {
-  // Initialize state 'posts' with an empty array. This state will hold the fetched posts.
+function Products2({ onAddToCart }) {  // Added prop for handling add to cart
   const [posts, setPosts] = useState([]);
 
-  // useEffect hook to fetch posts from the WordPress REST API when the component mounts
   useEffect(() => {
-    // Use axios to make a GET request to the WordPress REST API for posts
-    axios
-      .get("http://localhost/wpapi/wp-json/wp/v2/posts?_embed")
-      .then((res) => setPosts(res.data)); 
-  }, []); 
+    axios.get("http://localhost/wpapi/wp-json/wp/v2/posts?_embed")
+      .then((res) => {
+        setPosts(res.data.map(post => ({
+          id: post.id,
+          title: post.title.rendered,
+          description: post.content.rendered,
+          price: parseFloat(post.meta.price),  // Assuming you have a price meta field
+          image: post._embedded['wp:featuredmedia'] ? post._embedded['wp:featuredmedia'][0].source_url : null,
+        })));
+      });
+  }, []);
 
-  // Map each post in the 'posts' state to an <li> element with its content
   const postsJsx = posts.map((post) => (
-    // Set the inner HTML of the <li> to the post's content. Note: This can be a security risk (XSS)
-    <div>
-    
-      <h1
-        key={post.id}
-        dangerouslySetInnerHTML={{ __html: post.title.rendered }}
-      >
-      
-      </h1>
-      <p class="grid-container"dangerouslySetInnerHTML={{ __html: post.content.rendered }}>
-        </p> 
+    <div className="product-list">
+    <div className="product-item" key={post.id}>
+      <h1>{post.title}</h1>
+      <div dangerouslySetInnerHTML={{ __html: post.description }}></div>
+      {post.image && <img src={post.image} alt={post.title} className="product-image"/>}
+      <p>Price: ${post.price.toFixed(2)}</p>
+      <button onClick={() => onAddToCart(post)}>Add to Cart</button>
+    </div>
     </div>
   ));
 
-  // Render the list of posts inside a <ul> element
   return <ul>{postsJsx}</ul>;
 }
 
