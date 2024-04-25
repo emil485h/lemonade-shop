@@ -4,8 +4,8 @@ import Header from "./components/Header/Header.js";
 import ProductList from "./components/ProductList/ProductList.js";
 import Cart from "./components/Cart/Cart.js";
 import Modal from "./components/Modal/Modal.js";
-import product from "./components/Products/Products.js"; // Example additional component
-import products2 from "./components/Products2/Products2.js"; // Example additional component
+import Product from "./components/Products/Products.js"; // Example additional component
+import Products2 from "./components/Products2/Products2.js"; // Example additional component
 import Home from "./components/HomePage/Home.js"; // Example home component
 import "./App.css";
 
@@ -83,7 +83,7 @@ function App() {
               <ProductList products={products} onAddToCart={handleAddToCart} />
             }
           />
-          <Route path="/products2" element={<products2 />} />
+          <Route path="/products2" element={<Products2 />} />
         </Routes>
         <Modal isOpen={isCartVisible} onClose={() => setIsCartVisible(false)}>
           <Cart
