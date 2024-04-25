@@ -4,6 +4,7 @@ import Header from "./components/Header/Header.js";
 import ProductList from "./components/ProductList/ProductList.js";
 import Cart from "./components/Cart/Cart.js";
 import Modal from "./components/Modal/Modal.js";
+import Footer from "./components/Footer/Footer";
 import Product from "./components/Products/Products.js"; // Example additional component
 import Products2 from "./components/Products2/Products2.js"; // Example additional component
 import Home from "./components/HomePage/Home.js"; // Example home component
@@ -97,6 +98,7 @@ function App() {
             lemonsUsed={lemonsUsed}
           />
         </Modal>
+        <Footer />
       </div>
     </Router>
   );

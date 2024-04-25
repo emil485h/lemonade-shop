@@ -1,6 +1,7 @@
 import React from "react";
 import CartItem from "../CartItem/CartItem.js";
 import "../Modal/Modal.css"; // Ensure the path is correct based on your project structure
+import "./Cart.css";
 
 const Cart = ({ cartItems, onUpdateCart, onRemoveFromCart, totalPrice }) => {
   return (
@@ -16,10 +17,12 @@ const Cart = ({ cartItems, onUpdateCart, onRemoveFromCart, totalPrice }) => {
           />
         ))
       ) : (
-        <p>The cart is empty.</p>
+        <p id="emptyCart">
+          Intet at se her, eventyrer! Gå på opdagelse i vores artefakter
+        </p>
       )}
       <div className="cart-summary">
-        <p>Total Sales: {totalPrice.toFixed(2)} Kr.</p>
+        <p>Samlet Bytte: {totalPrice.toFixed(2)} Guld (Kr).</p>
       </div>
     </div>
   );
