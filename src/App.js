@@ -5,12 +5,17 @@ import ProductList from "./components/ProductList/ProductList.js";
 import Cart from "./components/Cart/Cart.js";
 import Modal from "./components/Modal/Modal.js";
 import Footer from "./components/Footer/Footer";
-import product from "./components/Products/Products.js"; // Example additional component
-import products2 from "./components/Products2/Products2.js"; // Example additional component
+import Product from "./components/Products/Products.js"; // Example additional component
+import Products2 from "./components/Products2/Products2.js"; // Example additional component
 import Home from "./components/HomePage/Home.js"; // Example home component
 import "./App.css";
 
+
+
 function App() {
+
+
+  
   const [products] = useState([
     // Flere produkter kan tilføjes her
   ]);
@@ -22,6 +27,8 @@ function App() {
   const [isCartVisible, setIsCartVisible] = useState(false);
 
   const costPerLemon = 2;
+
+
 
   const handleAddToCart = (productToAdd) => {
     setCartItems((prevItems) => {
@@ -79,7 +86,7 @@ function App() {
               <ProductList products={products} onAddToCart={handleAddToCart} />
             }
           />
-          <Route path="/products2" element={<products2 />} />
+          <Route path="/products2" element={<Products2 onAddToCart={handleAddToCart}/>} />
         </Routes>
         <Modal isOpen={isCartVisible} onClose={() => setIsCartVisible(false)}>
           <Cart
@@ -95,6 +102,9 @@ function App() {
       </div>
     </Router>
   );
+
+  
 }
+
 
 export default App;
