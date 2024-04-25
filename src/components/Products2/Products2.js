@@ -9,9 +9,9 @@ function Products2() {
   useEffect(() => {
     // Use axios to make a GET request to the WordPress REST API for posts
     axios
-      .get("http://localhost/wp-json/wp/v2/posts?_embed")
-      .then((res) => setPosts(res.data)); // On success, update the 'posts' state with the fetched data
-  }, []); // The empty dependency array means this effect runs only once after the initial render
+      .get("http://localhost/wpapi/wp-json/wp/v2/posts?_embed")
+      .then((res) => setPosts(res.data)); 
+  }, []); 
 
   // Map each post in the 'posts' state to an <li> element with its content
   const postsJsx = posts.map((post) => (

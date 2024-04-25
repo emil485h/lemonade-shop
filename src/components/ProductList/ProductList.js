@@ -9,7 +9,7 @@ const ProductList = ({ onAddToCart }) => {
     // Function to fetch products
     const fetchProducts = async () => {
       try {
-        const response = await axios.get('http://localhost:8000/api/products');
+        const response = await axios.get('http://127.0.0.1:8000/api/products ');
         setProducts(response.data.products); // Assume response.data contains the array of products
       } catch (error) {
         console.error('Error fetching products:', error);
