@@ -1,0 +1,14 @@
+.footer {
+  width: 100%;
+  background-color: #333;
+  color: white;
+  padding: 20px 0;
+  text-align: center;
+  margin-top: 30px;
+  border-top: 2px solid #d4af37; /* Golden border */
+}
+
+.footer-content p {
+  margin: 0;
+  padding: 5px;
+}

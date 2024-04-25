@@ -8,7 +8,7 @@ header {
   text-decoration: none;
   width: 100%;
   justify-content: space-between;
-  background-color: rgb(138, 7, 7);
+  background-color: #1a1a1a;
   margin: 0;
   align-items: center;
 }
@@ -28,21 +28,29 @@ nav {
 
 nav a {
   text-decoration: none;
-  color: black;
+  color: #d4af36;
 }
 
 nav a:hover {
-  color: grey;
+  color: red;
+}
+
+.header-content {
+  width: 100%;
+  margin: 0 auto; /* Center the content */
+  max-width: 1920px; /* Or whatever max-width you want */
+  padding: 0 20px; /* Add some padding on the sides */
+  display: flex; /* Assuming you want a flexbox layout */
+  justify-content: space-evenly;
+  align-items: center;
 }
 
 button {
-  background-color: rgb(138, 7, 7);
-
+  background-color: transparent;
   border: none;
   padding: 10px 20px;
   text-align: center;
   text-decoration: none;
-
   margin: 4px 2px;
   cursor: pointer;
   font-size: 16px;
@@ -53,23 +61,19 @@ button {
 }
 
 .cart-item-count {
-  background-color: rgb(138, 7, 7);
-  color: white;
-  border-radius: 50%;
-  padding: 2px 6px;
-  font-size: 0.8em;
-  position: relative;
-  top: -10px;
-  right: -10px;
+  background-color: transparent;
+  color: #d4af36;
+  margin-left: 4px;
 }
 
 .icon-cart {
-  background-color: rgb(138, 7, 7);
+  background-color: transparent;
   margin-right: 4px;
   padding: 0;
   font-size: 24px;
+  color: #d4af36;
 }
 
 .icon-cart:hover {
-  color: grey;
+  color: red;
 }
