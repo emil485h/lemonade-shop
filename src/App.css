@@ -1,6 +1,9 @@
 .App {
   text-align: center;
   overflow: hidden;
+  background-image: url("../public/DnD-Background-3.webp");
+
+  background-size: cover;
 }
 
 .App-logo {
@@ -38,6 +41,7 @@ section {
   display: flex;
   margin: 30px auto 0 auto;
   justify-content: center;
+  max-width: 1920px;
 }
 
 section p {
@@ -52,6 +56,22 @@ section p {
 section img {
   width: 50%;
   border-radius: 10px;
+}
+
+.welcome-message {
+  font-family: "Cinzel", serif; /* Applying the fantasy-style font */
+  color: #d4af37; /* A golden hue for a majestic look */
+  text-shadow: 1px 1px 2px black; /* Shadow for depth */
+  margin: 20px;
+  padding: 10px;
+  border: 2px solid #d4af37; /* Golden border */
+  background-color: #1a1a1a; /* Dark background to make the gold pop */
+  text-align: center;
+  border-radius: 8px; /* Soft rounded corners */
+}
+
+.red {
+  color: red;
 }
 @keyframes App-logo-spin {
   from {
