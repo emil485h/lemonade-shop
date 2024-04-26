@@ -9,7 +9,7 @@ const Header = ({ onCartClick, cartItemCount }) => {
   return (
     <header>
       <div className="header-content">
-        <img className="logo" src="Critical-Hit-Logo.webp" />
+        <img className="logo" src="critical.png" />
 
         <nav>
           <Link to="/">Home</Link>
